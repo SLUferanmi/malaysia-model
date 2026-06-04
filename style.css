@@ -992,13 +992,7 @@ body {
     color: var(--accent-amber);
 }
 
-.assumption-block.warning {
-    border-left: 3px solid var(--accent-amber);
-}
 
-.assumption-block.pass {
-    border-left: 3px solid var(--accent-emerald);
-}
 
 /* 11. ANIMATIONS */
 @keyframes slideIn {
@@ -1083,4 +1077,141 @@ body.light-mode .clean-search-box input {
 body.light-mode .input-container input {
     background-color: #ffffff;
 }
+
+/* =============================================================================
+   13. METHODOLOGY INFO GRID LAYOUT & ACADEMIC STYLING
+   ============================================================================= */
+.info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+.info-full {
+    grid-column: span 2;
+}
+
+/* Math Cards & Equations */
+.math-card {
+    background-color: var(--bg-void);
+    border: 1px solid var(--border-dim);
+    border-radius: var(--radius-standard);
+    padding: 1.25rem 1.5rem;
+    margin: 1rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.math-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+}
+
+.math-equation {
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    color: var(--accent-emerald);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    padding: 0.25rem 0;
+    display: block;
+    word-break: break-all;
+}
+
+/* Variable Containers */
+.variable-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 0.75rem;
+}
+
+.var-item {
+    border-bottom: 1px solid var(--border-dim);
+    padding-bottom: 0.75rem;
+}
+
+.var-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.var-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.25rem;
+}
+
+.var-badge {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 0.75rem;
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    display: inline-block;
+    min-width: 28px;
+    text-align: center;
+}
+
+.var-badge.dependent {
+    background-color: var(--accent-amber-dim);
+    color: var(--accent-amber);
+    border: 1px solid rgba(245, 158, 11, 0.15);
+}
+
+.var-badge.independent {
+    background-color: var(--accent-emerald-dim);
+    color: var(--accent-emerald);
+    border: 1px solid rgba(16, 185, 129, 0.15);
+}
+
+.var-desc {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    line-height: 1.4;
+}
+
+/* Reference Lists */
+.reference-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 0.75rem;
+}
+
+.reference-list li {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    line-height: 1.4;
+}
+
+.reference-list li i {
+    color: var(--accent-emerald);
+    margin-top: 0.25rem;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+}
+
+.reference-list li strong {
+    color: var(--text-primary);
+}
+
+@media (max-width: 768px) {
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+    .info-full {
+        grid-column: span 1;
+    }
+}
+
 

@@ -42,9 +42,9 @@ Average Yield       0.231636        0.990732        1.000000
 --- ASSUMPTION CHECKS ---
 1. Linearity: Checked via scatter plots.
 2. Multicollinearity (VIF):
-   - VIF (Planted Area): 45.4851
-   - VIF (Rice Production): 45.4851
-   ⚠ High multicollinearity detected (VIF > 10). Note as study limitation.
+   - VIF (Planted Area): 1.1478
+   - VIF (Rice Production): 1.1478
+   ✔ No severe multicollinearity (VIF < 10)
 3. Normality of Residuals:
    - Shapiro-Wilk stat: 0.7304
    - Shapiro-Wilk p-value: 0.0000

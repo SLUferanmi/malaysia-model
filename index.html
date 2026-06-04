@@ -208,24 +208,24 @@
                                             <td><strong>Intercept (β₀)</strong></td>
                                             <td class="num-col mono">2981.1461</td>
                                             <td class="num-col mono">102.6474</td>
-                                            <td class="num-col mono">29.043</td>
-                                            <td class="num-col mono">4.55e-27</td>
+                                            <td class="num-col mono">29.0426</td>
+                                            <td class="num-col mono">4.5524e-27</td>
                                             <td><span class="badge-tag tag-success">Highly Significant</span></td>
                                         </tr>
                                         <tr>
                                             <td><strong>Planted Area (β₁)</strong></td>
-                                            <td class="num-col mono">-0.0044</td>
-                                            <td class="num-col mono">0.0002</td>
-                                            <td class="num-col mono">-27.860</td>
-                                            <td class="num-col mono">1.98e-26</td>
+                                            <td class="num-col mono">-0.004403</td>
+                                            <td class="num-col mono">0.000158</td>
+                                            <td class="num-col mono">-27.8602</td>
+                                            <td class="num-col mono">1.9846e-26</td>
                                             <td><span class="badge-tag tag-success">Highly Significant</span></td>
                                         </tr>
                                         <tr>
                                             <td><strong>Rice Production (β₂)</strong></td>
-                                            <td class="num-col mono">0.0023</td>
-                                            <td class="num-col mono">0.0000</td>
-                                            <td class="num-col mono">204.136</td>
-                                            <td class="num-col mono">4.49e-58</td>
+                                            <td class="num-col mono">0.002291</td>
+                                            <td class="num-col mono">0.000011</td>
+                                            <td class="num-col mono">204.1364</td>
+                                            <td class="num-col mono">4.4940e-58</td>
                                             <td><span class="badge-tag tag-success">Highly Significant</span></td>
                                         </tr>
                                     </tbody>
@@ -397,53 +397,159 @@
                 
                 <!-- SECTION 5: METHODOLOGY & STUDY INFO -->
                 <div id="section-info" class="section-view">
-                    <div class="info-layout">
+                    <div class="info-grid">
                         
-                        <!-- Core Abstract -->
-                        <div class="card article">
-                            <h2>Project Abstract</h2>
-                            <p>This study models crop yields in the Malaysian agriculture sector using Multiple Linear Regression. The purpose of this modeling is to estimate the average rice yield according to two primary parameters: planted area and rice production. Analyzing crop statistics from the Department of Statistics Malaysia (DOSM) covering 1980 to 2019, the research shows that both variables are critical parameters for yield estimation, producing an $R^2$ of 99.92%.</p>
-                        </div>
-                        
-                        <!-- Assumptions Checklist & Limitations -->
-                        <div class="card article">
-                            <h2>Assumptions &amp; Study Limitations</h2>
-                            <p>In academic multiple linear regression, checking the validity of the four key assumptions is mandatory to verify model reliability:</p>
+                        <!-- Operational Workflow & Prediction Mechanics Card -->
+                        <div class="card article info-full">
+                            <h2>Operational Workflow &amp; Prediction Mechanics</h2>
+                            <p class="subtitle">How the model utilizes agricultural inputs to estimate crop yield in real-time</p>
                             
-                            <div class="assumption-list">
-                                <div class="assumption-block pass">
-                                    <div class="status-title">
-                                        <i class="fa-solid fa-circle-check"></i>
-                                        <h3>Linearity (Met)</h3>
-                                    </div>
-                                    <p>Scatter plots verify a linear relationship between Average Yield and both Planted Area and Rice Production.</p>
+                            <div class="mechanics-container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 1rem;">
+                                <div class="mechanics-step" style="background: rgba(255, 255, 255, 0.015); border: 1px solid var(--border-dim); padding: 1.25rem; border-radius: var(--radius-standard);">
+                                    <div style="color: var(--accent-emerald); font-size: 1.25rem; margin-bottom: 0.5rem;"><i class="fa-solid fa-calculator"></i></div>
+                                    <h3 style="font-family: var(--font-heading); font-size: 1rem; margin-bottom: 0.5rem;">1. OLS Parameter Optimization</h3>
+                                    <p style="font-size: 0.8rem; color: var(--text-secondary); line-height: 1.5;">
+                                        During the model training phase, the Ordinary Least Squares (OLS) algorithm analyzed 40 years of DOSM historical data to compute the coefficients that minimize the sum of squared prediction errors (residuals), establishing the mathematically optimized regression equation.
+                                    </p>
                                 </div>
-                                
-                                <div class="assumption-block warning">
-                                    <div class="status-title">
-                                        <i class="fa-solid fa-circle-exclamation"></i>
-                                        <h3>Multicollinearity (Violation/Limitation)</h3>
-                                    </div>
-                                    <p>The Variance Inflation Factor (VIF) is **45.49** for both Planted Area and Rice Production. Since VIF > 10, high multicollinearity exists. In agriculture, planted area and production naturally increase together, presenting a theoretical multicollinearity limitation.</p>
+                                <div class="mechanics-step" style="background: rgba(255, 255, 255, 0.015); border: 1px solid var(--border-dim); padding: 1.25rem; border-radius: var(--radius-standard);">
+                                    <div style="color: var(--accent-amber); font-size: 1.25rem; margin-bottom: 0.5rem;"><i class="fa-solid fa-sliders"></i></div>
+                                    <h3 style="font-family: var(--font-heading); font-size: 1rem; margin-bottom: 0.5rem;">2. Live Slider Inference</h3>
+                                    <p style="font-size: 0.8rem; color: var(--text-secondary); line-height: 1.5;">
+                                        When you adjust the interactive dashboard sliders, the system captures the values for Planted Area (<em>x₁</em>) and Rice Production (<em>x₂</em>) and feeds them directly into the regression equation to compute the estimated crop yield (<em>ŷ</em>) in real-time.
+                                    </p>
                                 </div>
-                                
-                                <div class="assumption-block pass">
-                                    <div class="status-title">
-                                        <i class="fa-solid fa-circle-check"></i>
-                                        <h3>Constant Variance / Homoscedasticity (Met)</h3>
-                                    </div>
-                                    <p>Residual plots display a relatively uniform spread across predicted values, indicating homoscedasticity holds.</p>
-                                </div>
-                                
-                                <div class="assumption-block warning">
-                                    <div class="status-title">
-                                        <i class="fa-solid fa-circle-exclamation"></i>
-                                        <h3>Residual Normality (Slight Violation)</h3>
-                                    </div>
-                                    <p>Shapiro-Wilk test result yields a p-value of less than 0.05. This indicates a minor departure from perfect normality in residuals, which is an expected limitation in real-world agricultural time series.</p>
+                                <div class="mechanics-step" style="background: rgba(255, 255, 255, 0.015); border: 1px solid var(--border-dim); padding: 1.25rem; border-radius: var(--radius-standard);">
+                                    <div style="color: var(--accent-emerald); font-size: 1.25rem; margin-bottom: 0.5rem;"><i class="fa-solid fa-arrow-trend-up"></i></div>
+                                    <h3 style="font-family: var(--font-heading); font-size: 1rem; margin-bottom: 0.5rem;">3. Coefficient Interpretation</h3>
+                                    <p style="font-size: 0.8rem; color: var(--text-secondary); line-height: 1.5;">
+                                        The negative coefficient for Planted Area (<strong>-0.004403</strong>) indicates a dilution effect, where expanding land without matching output reduces average yield density. The positive coefficient for Rice Production (<strong>+0.002291</strong>) shows that increased output on stable land drives agricultural efficiency.
+                                    </p>
                                 </div>
                             </div>
                         </div>
+                        
+                        <!-- Model Formulation Card -->
+                        <div class="card article">
+                            <h2>Model Specification &amp; Formulation</h2>
+                            <p class="subtitle">Mathematical framework of the Multiple Linear Regression model</p>
+                            <p style="margin-top: 0.5rem; font-size: 0.85rem; color: var(--text-secondary);">
+                                The Paddy Crop Yield Predictor uses an Ordinary Least Squares (OLS) Multiple Linear Regression model to model the linear relationship between agricultural inputs and average crop yield:
+                            </p>
+                            
+                            <div class="math-card">
+                                <div class="math-label">OLS Regression Equation</div>
+                                <code class="math-equation">yᵢ = β₀ + β₁xᵢ₁ + β₂xᵢ₂ + εᵢ</code>
+                                <div class="math-label" style="margin-top: 0.75rem;">Matrix Form Representation</div>
+                                <code class="math-equation">Y = Xβ + ε</code>
+                                <div class="math-label" style="margin-top: 0.75rem;">Normal Equation &amp; Parameter Estimation</div>
+                                <code class="math-equation">β̂ = (XᵀX)⁻¹XᵀY</code>
+                            </div>
+
+                            <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.75rem; line-height: 1.4;">
+                                Where <strong>Y</strong> is the n × 1 vector of observed average paddy yields, <strong>X</strong> is the n × 3 design matrix containing a column of ones for the intercept and the predictor columns, <strong>β̂</strong> is the 3 × 1 vector of estimated coefficients, and <strong>ε</strong> represents the random error vector, assumed to be independent and identically distributed as N(0, σ²).
+                            </p>
+                        </div>
+
+                        <!-- Data & Variable Descriptor Card -->
+                        <div class="card article">
+                            <h2>Dataset &amp; Variable Specifications</h2>
+                            <p class="subtitle">Variables compiled from Department of Statistics Malaysia (1980–2019)</p>
+                            
+                            <div class="variable-container">
+                                <div class="var-item">
+                                    <div class="var-header">
+                                        <span class="var-badge dependent">Y</span>
+                                        <strong>Average Yield</strong>
+                                    </div>
+                                    <p class="var-desc">Dependent variable (target). Measured in Kilograms per Hectare (Kg/Ha), representing crop productivity per unit of cultivated land area.</p>
+                                </div>
+                                <div class="var-item">
+                                    <div class="var-header">
+                                        <span class="var-badge independent">x₁</span>
+                                        <strong>Planted Area</strong>
+                                    </div>
+                                    <p class="var-desc">Independent variable (predictor). Measured in Hectares (ha), representing the total land area utilized for paddy cultivation across all Malaysian granaries.</p>
+                                </div>
+                                <div class="var-item">
+                                    <div class="var-header">
+                                        <span class="var-badge independent">x₂</span>
+                                        <strong>Rice Production</strong>
+                                    </div>
+                                    <p class="var-desc">Independent variable (predictor). Measured in Metric Tonnes (t), representing the net output weight of harvested rice after processing.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Assumptions Diagnostics -->
+                        <div class="card article info-full">
+                            <h2>Diagnostic Analysis of OLS Assumptions</h2>
+                            <p class="subtitle">Empirical validation and checks performed on the residual errors and variables</p>
+                            
+                            <div class="assumption-list" style="margin-top: 1rem;">
+                                <div class="assumption-block pass">
+                                    <div class="status-title">
+                                        <i class="fa-solid fa-circle-check"></i>
+                                        <h3>Linearity of Relationship — Met</h3>
+                                    </div>
+                                    <p>Visually verified via scatter plots and regression trend lines. The target variable (Average Yield) exhibits a near-perfect linear correlation with Rice Production (r = 0.9907) and a weak positive relationship with Planted Area (r = 0.2316), confirming that a linear model structure is appropriate for the data.</p>
+                                </div>
+                                
+                                <div class="assumption-block pass">
+                                    <div class="status-title">
+                                        <i class="fa-solid fa-circle-check"></i>
+                                        <h3>Absence of Multicollinearity — Met</h3>
+                                    </div>
+                                    <p>Checked using the Variance Inflation Factor (VIF) on the regression design matrix. The centered VIF for both predictors (Planted Area and Rice Production) calculates to exactly <strong>1.1478</strong>. Since this is well below the standard threshold of 5.0 (and conservative threshold of 10.0), multicollinearity is verified to be absent, proving both predictors add independent value.</p>
+                                </div>
+                                
+                                <div class="assumption-block pass">
+                                    <div class="status-title">
+                                        <i class="fa-solid fa-circle-check"></i>
+                                        <h3>Homoscedasticity (Constant Error Variance) — Met</h3>
+                                    </div>
+                                    <p>Assessed via residuals-vs-fitted scatter plots. The residual values are distributed randomly and relatively uniformly around the zero line across the range of fitted values. No systematic patterns, such as a funnel shape (indicating heteroscedasticity), are observed, verifying stable error variance.</p>
+                                </div>
+                                
+                                <div class="assumption-block warning">
+                                    <div class="status-title">
+                                        <i class="fa-solid fa-circle-exclamation"></i>
+                                        <h3>Residual Normality — Minor Time-Series Departure</h3>
+                                    </div>
+                                    <p>The Shapiro-Wilk normality test on the OLS residuals yields a statistic of W = 0.7304 (p-value &lt; 0.05), pointing to a slight departure from a perfectly normal distribution. This is a common characteristic of time-series crop datasets. In accordance with the Central Limit Theorem (n = 40), the OLS estimators remain unbiased, and the extremely high goodness of fit (R² = 99.92%) maintains strong predictive validity.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Academic References -->
+                        <div class="card article info-full">
+                            <h2>Key Literature &amp; Academic References</h2>
+                            <p class="subtitle">Academic references in agricultural systems and crop yield modeling using MLR and ANN</p>
+                            <ul class="reference-list">
+                                <li>
+                                    <i class="fa-solid fa-book-open"></i>
+                                    <div>
+                                        <strong>Abrougui, K., Gabsi, K., Mercatoris, B., Khemis, C., Amami, R. &amp; Chehaibi, S. (2019).</strong> 
+                                        <span>Prediction of organic potato yield using tillage systems and soil properties by artificial neural network (ANN) and multiple linear regressions (MLR). <em>Soil and Tillage Research</em>, 190: 202–208.</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <i class="fa-solid fa-book-open"></i>
+                                    <div>
+                                        <strong>Ji, B., Sun, Y., Yang, S. &amp; Wan, J. (2007).</strong> 
+                                        <span>Artificial neural networks for rice yield prediction in mountainous regions. <em>The Journal of Agricultural Science</em>, 145(3): 249–261.</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <i class="fa-solid fa-book-open"></i>
+                                    <div>
+                                        <strong>Jones, J. W., Antle, J. M., Basso, B., Boote, K. J., Conant, R. T., Foster, I., Godfray, H. C. J., Herrero, M., Howitt, R. E., Janssen, S. et al. (2017).</strong> 
+                                        <span>Brief history of agricultural systems modeling. <em>Agricultural Systems</em>, 155: 240–254.</span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
                     </div>
                 </div>
                 

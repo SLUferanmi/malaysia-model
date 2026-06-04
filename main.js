@@ -14,7 +14,7 @@ const dataset = [
     {"Year":1986,"PlantedArea":650875,"AvgYield":2640,"PaddyProduction":1718215,"RiceProduction":1104501},
     {"Year":1987,"PlantedArea":658954,"AvgYield":2469,"PaddyProduction":1626699,"RiceProduction":1046467},
     {"Year":1988,"PlantedArea":671755,"AvgYield":2525,"PaddyProduction":1696239,"RiceProduction":1091478},
-    {"Year":1989,"PlantedArea":664137,"AvgYield":2625,"PaddyProduction":1743444,"RiceProduction":122617},
+    {"Year":1989,"PlantedArea":664137,"AvgYield":2625,"PaddyProduction":1743444,"RiceProduction":1122617},
     {"Year":1990,"PlantedArea":680647,"AvgYield":2769,"PaddyProduction":1884984,"RiceProduction":1215065},
     {"Year":1991,"PlantedArea":683640,"AvgYield":2818,"PaddyProduction":1926354,"RiceProduction":1241796},
     {"Year":1992,"PlantedArea":672753,"AvgYield":2992,"PaddyProduction":2012732,"RiceProduction":1297914},

@@ -78,10 +78,10 @@ std_resid = residuals / residuals.std()
 # Correlation Matrix
 corr_matrix = df_clean[['PlantedArea', 'RiceProduction', 'AvgYield']].corr()
 
-# VIF (Multicollinearity Check)
-Xvif = np.column_stack([x1, x2])
-vif1 = variance_inflation_factor(Xvif, 0)
-vif2 = variance_inflation_factor(Xvif, 1)
+# VIF (Multicollinearity Check) - Must include constant for correct centered VIF
+Xvif = sm.add_constant(np.column_stack([x1, x2]))
+vif1 = variance_inflation_factor(Xvif, 1)
+vif2 = variance_inflation_factor(Xvif, 2)
 
 # ANOVA Elements
 ss_reg = float(np.sum((y_pred - y.mean()) ** 2))
