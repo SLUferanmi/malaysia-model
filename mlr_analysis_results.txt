@@ -1,0 +1,53 @@
+=================================================================
+             MULTIPLE LINEAR REGRESSION ANALYSIS RESULTS
+=================================================================
+Dataset: Malaysia Paddy Statistics (1980-2019)
+Observations (n): 40
+
+--- MODEL EQUATION ---
+ŷ = 2981.1461 + (-0.004403) x₁ + (0.002291) x₂
+
+Where:
+  ŷ  = Average Yield (Kg/Hectare)
+  x₁ = Planted Area (Hectare)
+  x₂ = Rice Production (Tonne)
+
+--- MODEL SUMMARY & FIT ---
+R² (R-squared)        : 0.999160 (99.92%)
+Adjusted R²          : 0.999115 (99.91%)
+Residual Std Error   : 14.7186 Kg/Ha (RMSE)
+F-statistic          : 22018.2158
+Prob (F-statistic)   : 1.2430e-57 (Model is statistically significant)
+
+--- COEFFICIENTS ---
+Variable          Estimate (β)     Std Error       t-value         p-value
+-----------------------------------------------------------------
+Intercept (β₀)        2981.1461      102.6474       29.0426    4.5524e-27
+Planted Area (β₁)     -0.004403      0.000158      -27.8602    1.9846e-26
+Rice Production (β₂)    0.002291     0.000011      204.1364    4.4940e-58
+
+--- ANOVA TABLE ---
+Source          SS               df     MS               F            p-value
+-----------------------------------------------------------------
+Regression           9539983.15     2       4769991.58  22018.2158  1.2430e-57
+Residual                8015.62    37           216.64
+Total                9547998.78    39
+
+--- CORRELATION MATRIX ---
+                  Planted Area    Rice Production   Average Yield
+Planted Area        1.000000        0.358832        0.231636
+Rice Production     0.358832        1.000000        0.990732
+Average Yield       0.231636        0.990732        1.000000
+
+--- ASSUMPTION CHECKS ---
+1. Linearity: Checked via scatter plots.
+2. Multicollinearity (VIF):
+   - VIF (Planted Area): 45.4851
+   - VIF (Rice Production): 45.4851
+   ⚠ High multicollinearity detected (VIF > 10). Note as study limitation.
+3. Normality of Residuals:
+   - Shapiro-Wilk stat: 0.7304
+   - Shapiro-Wilk p-value: 0.0000
+   ⚠ Residuals depart slightly from normality (p <= 0.05)
+4. Homoscedasticity: Checked via residual plots.
+=================================================================

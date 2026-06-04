@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paddy Crop Yield Predictor — Multiple Linear Regression Model</title>
+    <meta name="description" content="An interactive supervised machine learning software model to predict average paddy crop yield using Planted Area and Rice Production based on historical DOSM data (1980-2019).">
+    
+    <!-- Google Fonts: Space Grotesk & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Custom Style Sheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-layout">
+        
+        <!-- SIDEBAR NAVIGATION -->
+        <aside class="sidebar">
+            <div class="sidebar-brand">
+                <i class="fa-solid fa-leaf brand-icon"></i>
+                <div class="brand-details">
+                    <span class="brand-title">PaddyYield ML</span>
+                    <span class="brand-subtitle">Group 19 Project</span>
+                </div>
+            </div>
+            
+            <nav class="sidebar-menu">
+                <button class="nav-item active" onclick="switchSection('section-dashboard', event)">
+                    <i class="fa-solid fa-chart-pie"></i>
+                    <span>Dashboard</span>
+                </button>
+                <button class="nav-item" onclick="switchSection('section-analytics', event)">
+                    <i class="fa-solid fa-square-poll-vertical"></i>
+                    <span>Model Analytics</span>
+                </button>
+                <button class="nav-item" onclick="switchSection('section-charts', event)">
+                    <i class="fa-solid fa-chart-line"></i>
+                    <span>Diagnostic Charts</span>
+                </button>
+                <button class="nav-item" onclick="switchSection('section-explorer', event)">
+                    <i class="fa-solid fa-database"></i>
+                    <span>Data Explorer</span>
+                </button>
+                <button class="nav-item" onclick="switchSection('section-info', event)">
+                    <i class="fa-solid fa-circle-info"></i>
+                    <span>Methodology &amp; Info</span>
+                </button>
+                <button class="nav-item theme-toggle-btn" id="theme-toggle" style="margin-top: auto;">
+                    <i class="fa-solid fa-moon"></i>
+                    <span>Dark Mode</span>
+                </button>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <span class="school-name">KWASU Computer Science</span>
+                <span class="copyright">&copy; 2026 B.Sc. Project</span>
+            </div>
+        </aside>
+        
+        <!-- MAIN CANVAS -->
+        <div class="main-canvas">
+            
+            <!-- HEADER BAR -->
+            <header class="top-header">
+                <div class="header-title">
+                    <h1 id="current-section-title">Dashboard</h1>
+                    <p class="header-subtitle" id="current-section-subtitle">Predictive crop model &amp; diagnostic stats</p>
+                </div>
+                <div class="header-actions">
+                    <span class="badge"><i class="fa-solid fa-seedling"></i> MLR Model Active</span>
+                </div>
+            </header>
+            
+            <!-- CONTENT VIEWS -->
+            <div class="content-wrapper">
+                
+                <!-- SECTION 1: DASHBOARD & PREDICTOR -->
+                <div id="section-dashboard" class="section-view active">
+                    <div class="dashboard-grid">
+                        
+                        <!-- Prediction Calculator -->
+                        <div class="card panel-main">
+                            <div class="panel-header">
+                                <h2>Interactive Predictor</h2>
+                                <p>Adjust agricultural inputs to estimate average yield in real-time</p>
+                            </div>
+                            
+                            <div class="panel-body">
+                                <div class="predictor-controls">
+                                    <div class="control-group">
+                                        <div class="control-label">
+                                            <span class="label-primary">Planted Area (x₁)</span>
+                                            <span class="label-secondary">Hectares</span>
+                                        </div>
+                                        <div class="slider-container">
+                                            <input type="range" id="planted-area-range" min="500000" max="900000" value="684416" class="elegant-slider">
+                                            <div class="slider-bounds">
+                                                <span>500k ha</span>
+                                                <span>900k ha</span>
+                                            </div>
+                                        </div>
+                                        <div class="input-container">
+                                            <input type="number" id="planted-area" min="500000" max="900000" value="684416">
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="control-group">
+                                        <div class="control-label">
+                                            <span class="label-primary">Rice Production (x₂)</span>
+                                            <span class="label-secondary">Tonnes</span>
+                                        </div>
+                                        <div class="slider-container">
+                                            <input type="range" id="rice-production-range" min="900000" max="2100000" value="1876922" class="elegant-slider">
+                                            <div class="slider-bounds">
+                                                <span>900k t</span>
+                                                <span>2.1M t</span>
+                                            </div>
+                                        </div>
+                                        <div class="input-container">
+                                            <input type="number" id="rice-production" min="900000" max="2100000" value="1876922">
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="formula-container">
+                                    <span class="formula-label">Fitted Equation</span>
+                                    <code class="formula-code">ŷ = 2981.1461 - 0.004403·x₁ + 0.002291·x₂</code>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Prediction Result -->
+                        <div class="card panel-result">
+                            <div class="panel-header">
+                                <h2>Yield Estimation</h2>
+                            </div>
+                            
+                            <div class="result-display">
+                                <div class="prediction-big-num">
+                                    <span id="prediction-output">4,255</span>
+                                    <span class="prediction-unit">Kg/Hectare</span>
+                                </div>
+                                <p class="prediction-text" id="prediction-interpretation">Crop yield is estimated at 4,255 kg per hectare.</p>
+                                
+                                <div class="progress-bar-wrapper">
+                                    <div class="progress-bar-track">
+                                        <div class="progress-bar-fill" id="prediction-progress-fill" style="width: 80%;"></div>
+                                    </div>
+                                    <div class="progress-bar-labels">
+                                        <span>2,000 kg/ha</span>
+                                        <span>4,600 kg/ha</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Top Level Stats Bar -->
+                    <div class="summary-stats-bar">
+                        <div class="summary-stat-box">
+                            <span class="stat-num">99.92%</span>
+                            <span class="stat-desc">Goodness of Fit (R²)</span>
+                        </div>
+                        <div class="summary-stat-box">
+                            <span class="stat-num">99.91%</span>
+                            <span class="stat-desc">Adjusted R²</span>
+                        </div>
+                        <div class="summary-stat-box">
+                            <span class="stat-num">14.72</span>
+                            <span class="stat-desc">Residual Standard Error (Kg/Ha)</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- SECTION 2: MODEL ANALYTICS (ANOVA / COEFFICIENTS) -->
+                <div id="section-analytics" class="section-view">
+                    <div class="analytics-layout">
+                        
+                        <!-- Regression Coefficients -->
+                        <div class="card">
+                            <div class="panel-header">
+                                <h2>Parameter Coefficients</h2>
+                                <p>T-statistics and significance levels for regression parameters</p>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="custom-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Variable</th>
+                                            <th class="num-col">Estimate (β)</th>
+                                            <th class="num-col">Std Error</th>
+                                            <th class="num-col">t-value</th>
+                                            <th class="num-col">p-value</th>
+                                            <th>Significance</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><strong>Intercept (β₀)</strong></td>
+                                            <td class="num-col mono">2981.1461</td>
+                                            <td class="num-col mono">102.6474</td>
+                                            <td class="num-col mono">29.043</td>
+                                            <td class="num-col mono">4.55e-27</td>
+                                            <td><span class="badge-tag tag-success">Highly Significant</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Planted Area (β₁)</strong></td>
+                                            <td class="num-col mono">-0.0044</td>
+                                            <td class="num-col mono">0.0002</td>
+                                            <td class="num-col mono">-27.860</td>
+                                            <td class="num-col mono">1.98e-26</td>
+                                            <td><span class="badge-tag tag-success">Highly Significant</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Rice Production (β₂)</strong></td>
+                                            <td class="num-col mono">0.0023</td>
+                                            <td class="num-col mono">0.0000</td>
+                                            <td class="num-col mono">204.136</td>
+                                            <td class="num-col mono">4.49e-58</td>
+                                            <td><span class="badge-tag tag-success">Highly Significant</span></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        
+                        <!-- ANOVA Table -->
+                        <div class="card">
+                            <div class="panel-header">
+                                <h2>ANOVA (Analysis of Variance)</h2>
+                                <p>Overall model significance testing</p>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="custom-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Source</th>
+                                            <th class="num-col">SS (Sum of Squares)</th>
+                                            <th class="num-col">df</th>
+                                            <th class="num-col">MS (Mean Square)</th>
+                                            <th class="num-col">F-statistic</th>
+                                            <th class="num-col">p-value</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><strong>Regression</strong></td>
+                                            <td class="num-col mono">9,539,983.15</td>
+                                            <td class="num-col mono">2</td>
+                                            <td class="num-col mono">4,769,991.58</td>
+                                            <td class="num-col mono">22,018.22</td>
+                                            <td class="num-col mono text-success">1.24e-57</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Residual</strong></td>
+                                            <td class="num-col mono">8,015.62</td>
+                                            <td class="num-col mono">37</td>
+                                            <td class="num-col mono">216.64</td>
+                                            <td class="num-col mono">-</td>
+                                            <td class="num-col mono">-</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Total</strong></td>
+                                            <td class="num-col mono">9,547,998.78</td>
+                                            <td class="num-col mono">39</td>
+                                            <td class="num-col mono">-</td>
+                                            <td class="num-col mono">-</td>
+                                            <td class="num-col mono">-</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- SECTION 3: DIAGNOSTIC CHARTS -->
+                <div id="section-charts" class="section-view">
+                    <div class="card">
+                        <div class="panel-header tab-menu-header">
+                            <div class="segmented-control">
+                                <button class="segment-btn active" onclick="switchChartTab(event, 'chart-timeline')">Actual vs. Predicted</button>
+                                <button class="segment-btn" onclick="switchChartTab(event, 'chart-linearity')">Linearity Check</button>
+                                <button class="segment-btn" onclick="switchChartTab(event, 'chart-correlation')">Correlation Heatmap</button>
+                                <button class="segment-btn" onclick="switchChartTab(event, 'chart-diagnostics')">Residual Diagnostics</button>
+                            </div>
+                        </div>
+                        
+                        <div class="panel-body chart-body-wrapper">
+                            <!-- Timeline view -->
+                            <div id="chart-timeline" class="chart-tab-content active">
+                                <div class="canvas-container">
+                                    <canvas id="timelineChart"></canvas>
+                                </div>
+                            </div>
+                            
+                            <!-- Linearity View -->
+                            <div id="chart-linearity" class="chart-tab-content">
+                                <div class="double-chart-row">
+                                    <div class="canvas-container half">
+                                        <canvas id="linearityChart1"></canvas>
+                                    </div>
+                                    <div class="canvas-container half">
+                                        <canvas id="linearityChart2"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Correlation Heatmap -->
+                            <div id="chart-correlation" class="chart-tab-content">
+                                <div class="heatmap-flex-layout">
+                                    <div class="heatmap-container-wrapper">
+                                        <div id="correlationHeatmap" class="custom-heatmap"></div>
+                                    </div>
+                                    <div class="heatmap-info">
+                                        <h3>Inter-Variable Analysis</h3>
+                                        <p>The correlation heatmap quantifies the linear relationships between predictors and target variables using Pearson's Correlation Coefficient ($r$):</p>
+                                        <ul class="clean-list">
+                                            <li><strong>Rice Production &amp; Yield:</strong> Near-perfect correlation ($r = 0.9907$), showing a strong linear dependence.</li>
+                                            <li><strong>Planted Area &amp; Yield:</strong> Weak positive correlation ($r = 0.2316$).</li>
+                                            <li><strong>Planted Area &amp; Rice Production:</strong> Moderate correlation ($r = 0.3588$).</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Residual Diagnostics -->
+                            <div id="chart-diagnostics" class="chart-tab-content">
+                                <div class="double-chart-row">
+                                    <div class="canvas-container half">
+                                        <canvas id="residualChart"></canvas>
+                                    </div>
+                                    <div class="canvas-container half">
+                                        <canvas id="qqChart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- SECTION 4: DATA EXPLORER -->
+                <div id="section-explorer" class="section-view">
+                    <div class="card">
+                        <div class="panel-header explorer-panel-header">
+                            <div class="explorer-text">
+                                <h2>Dataset Explorer</h2>
+                                <p>Search and filter historical paddy production data (1980–2019)</p>
+                            </div>
+                            <div class="explorer-inputs">
+                                <div class="clean-search-box">
+                                    <i class="fa-solid fa-magnifying-glass"></i>
+                                    <input type="text" id="search-input" placeholder="Search by year...">
+                                </div>
+                                <button class="btn-clean btn-primary" onclick="exportData()"><i class="fa-solid fa-download"></i> Export CSV</button>
+                            </div>
+                        </div>
+                        
+                        <div class="table-responsive">
+                            <table class="custom-table" id="data-explorer-table">
+                                <thead>
+                                    <tr>
+                                        <th>Year</th>
+                                        <th class="num-col">Planted Area (ha)</th>
+                                        <th class="num-col">Rice Production (t)</th>
+                                        <th class="num-col">Paddy Production (t)</th>
+                                        <th class="num-col">Actual Yield (kg/ha)</th>
+                                        <th class="num-col">Predicted Yield (kg/ha)</th>
+                                        <th class="num-col">Residual Error</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="explorer-tbody">
+                                    <!-- Dynamic Rows -->
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <div class="pagination-footer">
+                            <span class="pagination-summary" id="pagination-info">Showing 1-10 of 40 records</span>
+                            <div class="pagination-actions">
+                                <button class="btn-pagination" id="prev-page-btn" onclick="prevPage()"><i class="fa-solid fa-angle-left"></i></button>
+                                <div class="pagination-nums" id="pagination-pages"></div>
+                                <button class="btn-pagination" id="next-page-btn" onclick="nextPage()"><i class="fa-solid fa-angle-right"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- SECTION 5: METHODOLOGY & STUDY INFO -->
+                <div id="section-info" class="section-view">
+                    <div class="info-layout">
+                        
+                        <!-- Core Abstract -->
+                        <div class="card article">
+                            <h2>Project Abstract</h2>
+                            <p>This study models crop yields in the Malaysian agriculture sector using Multiple Linear Regression. The purpose of this modeling is to estimate the average rice yield according to two primary parameters: planted area and rice production. Analyzing crop statistics from the Department of Statistics Malaysia (DOSM) covering 1980 to 2019, the research shows that both variables are critical parameters for yield estimation, producing an $R^2$ of 99.92%.</p>
+                        </div>
+                        
+                        <!-- Assumptions Checklist & Limitations -->
+                        <div class="card article">
+                            <h2>Assumptions &amp; Study Limitations</h2>
+                            <p>In academic multiple linear regression, checking the validity of the four key assumptions is mandatory to verify model reliability:</p>
+                            
+                            <div class="assumption-list">
+                                <div class="assumption-block pass">
+                                    <div class="status-title">
+                                        <i class="fa-solid fa-circle-check"></i>
+                                        <h3>Linearity (Met)</h3>
+                                    </div>
+                                    <p>Scatter plots verify a linear relationship between Average Yield and both Planted Area and Rice Production.</p>
+                                </div>
+                                
+                                <div class="assumption-block warning">
+                                    <div class="status-title">
+                                        <i class="fa-solid fa-circle-exclamation"></i>
+                                        <h3>Multicollinearity (Violation/Limitation)</h3>
+                                    </div>
+                                    <p>The Variance Inflation Factor (VIF) is **45.49** for both Planted Area and Rice Production. Since VIF > 10, high multicollinearity exists. In agriculture, planted area and production naturally increase together, presenting a theoretical multicollinearity limitation.</p>
+                                </div>
+                                
+                                <div class="assumption-block pass">
+                                    <div class="status-title">
+                                        <i class="fa-solid fa-circle-check"></i>
+                                        <h3>Constant Variance / Homoscedasticity (Met)</h3>
+                                    </div>
+                                    <p>Residual plots display a relatively uniform spread across predicted values, indicating homoscedasticity holds.</p>
+                                </div>
+                                
+                                <div class="assumption-block warning">
+                                    <div class="status-title">
+                                        <i class="fa-solid fa-circle-exclamation"></i>
+                                        <h3>Residual Normality (Slight Violation)</h3>
+                                    </div>
+                                    <p>Shapiro-Wilk test result yields a p-value of less than 0.05. This indicates a minor departure from perfect normality in residuals, which is an expected limitation in real-world agricultural time series.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    
+    <!-- Script file -->
+    <script src="main.js"></script>
+</body>
+</html>
