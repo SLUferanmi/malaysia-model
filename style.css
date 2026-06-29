@@ -418,6 +418,34 @@ body {
     font-weight: 600;
 }
 
+#year-select {
+    width: 100%;
+    background: var(--bg-void);
+    border: 1px solid var(--border-dim);
+    border-radius: 8px;
+    padding: 0.55rem 0.75rem;
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    outline: none;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#year-select:hover {
+    border-color: var(--accent-emerald);
+    box-shadow: 0 0 0 1px rgba(16, 185, 129, 0.1);
+}
+
+#year-select:focus {
+    border-color: var(--accent-emerald);
+    box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
+}
+
+#year-select option {
+    background: #0d1527; /* matches var(--bg-card) dark value */
+    color: var(--text-primary);
+}
+
 /* RESULT DISPLAY */
 .panel-result {
     justify-content: center;

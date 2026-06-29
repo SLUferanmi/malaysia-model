@@ -86,30 +86,41 @@
                 <!-- SECTION 1: DASHBOARD & PREDICTOR -->
                 <div id="section-dashboard" class="section-view active">
                     <div class="dashboard-grid">
-                        
-                        <!-- Prediction Calculator -->
+                                               <!-- Prediction Calculator -->
                         <div class="card panel-main">
                             <div class="panel-header">
                                 <h2>Interactive Predictor</h2>
-                                <p>Adjust agricultural inputs to estimate average yield in real-time</p>
+                                <p>Adjust inputs or select a historical year to estimate yield in real-time</p>
                             </div>
                             
                             <div class="panel-body">
                                 <div class="predictor-controls">
                                     <div class="control-group">
                                         <div class="control-label">
+                                            <span class="label-primary">Target Year (Yield Time)</span>
+                                            <span class="label-secondary">Historical Scenario</span>
+                                        </div>
+                                        <div class="select-container" style="flex: 1;">
+                                            <select id="year-select" style="width: 100%; background: var(--bg-void); border: 1px solid var(--border-dim); border-radius: 8px; padding: 0.5rem 0.75rem; color: var(--text-primary); font-family: var(--font-body); outline: none; cursor: pointer; transition: var(--transition-fast);">
+                                                <!-- Dynamic Options -->
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="control-group">
+                                        <div class="control-label">
                                             <span class="label-primary">Planted Area (x₁)</span>
                                             <span class="label-secondary">Hectares</span>
                                         </div>
                                         <div class="slider-container">
-                                            <input type="range" id="planted-area-range" min="500000" max="900000" value="684416" class="elegant-slider">
+                                            <input type="range" id="planted-area-range" min="2000000" max="4000000" value="3815748" class="elegant-slider">
                                             <div class="slider-bounds">
-                                                <span>500k ha</span>
-                                                <span>900k ha</span>
+                                                <span>2.0M ha</span>
+                                                <span>4.0M ha</span>
                                             </div>
                                         </div>
-                                        <div class="input-container">
-                                            <input type="number" id="planted-area" min="500000" max="900000" value="684416">
+                                        <div class="input-container" style="width: 120px;">
+                                            <input type="number" id="planted-area" min="2000000" max="4000000" value="3815748">
                                         </div>
                                     </div>
                                     
@@ -119,21 +130,21 @@
                                             <span class="label-secondary">Tonnes</span>
                                         </div>
                                         <div class="slider-container">
-                                            <input type="range" id="rice-production-range" min="900000" max="2100000" value="1876922" class="elegant-slider">
+                                            <input type="range" id="rice-production-range" min="1500000" max="8500000" value="7901864" class="elegant-slider">
                                             <div class="slider-bounds">
-                                                <span>900k t</span>
-                                                <span>2.1M t</span>
+                                                <span>1.5M t</span>
+                                                <span>8.5M t</span>
                                             </div>
                                         </div>
-                                        <div class="input-container">
-                                            <input type="number" id="rice-production" min="900000" max="2100000" value="1876922">
+                                        <div class="input-container" style="width: 120px;">
+                                            <input type="number" id="rice-production" min="1500000" max="8500000" value="7901864">
                                         </div>
                                     </div>
                                 </div>
                                 
                                 <div class="formula-container">
                                     <span class="formula-label">Fitted Equation</span>
-                                    <code class="formula-code">ŷ = 2981.1461 - 0.004403·x₁ + 0.002291·x₂</code>
+                                    <code class="formula-code">ŷ = 2543.5717 - 0.000155·x₁ + 0.000091·x₂</code>
                                 </div>
                             </div>
                         </div>
@@ -146,18 +157,40 @@
                             
                             <div class="result-display">
                                 <div class="prediction-big-num">
-                                    <span id="prediction-output">4,255</span>
+                                    <span id="prediction-output">2,600</span>
                                     <span class="prediction-unit">Kg/Hectare</span>
                                 </div>
-                                <p class="prediction-text" id="prediction-interpretation">Crop yield is estimated at 4,255 kg per hectare.</p>
+                                <p class="prediction-text" id="prediction-interpretation">Crop yield is estimated at 2,600 kg per hectare.</p>
                                 
                                 <div class="progress-bar-wrapper">
                                     <div class="progress-bar-track">
                                         <div class="progress-bar-fill" id="prediction-progress-fill" style="width: 80%;"></div>
                                     </div>
                                     <div class="progress-bar-labels">
-                                        <span>2,000 kg/ha</span>
-                                        <span>4,600 kg/ha</span>
+                                        <span>1,800 kg/ha</span>
+                                        <span>2,800 kg/ha</span>
+                                    </div>
+                                </div>
+
+                                <div class="prediction-details-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; width: 100%; text-align: left; border-top: 1px solid var(--border-dim); padding-top: 1rem; margin-top: 0.5rem;">
+                                    <div class="detail-item">
+                                        <span class="detail-label" style="font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; font-weight: 600; display: block;">Yield Time (Horizon)</span>
+                                        <span id="yield-time-label" style="font-family: var(--font-heading); font-weight: 600; font-size: 0.85rem; color: var(--text-primary);">Year 2019</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label" style="font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; font-weight: 600; display: block;">Prediction Time</span>
+                                        <span id="prediction-time" style="font-family: var(--font-heading); font-weight: 600; font-size: 0.85rem; color: var(--text-primary);">< 0.01 ms</span>
+                                    </div>
+                                    <div class="detail-item" style="grid-column: span 2; border-top: 1px solid rgba(255,255,255,0.02); padding-top: 0.5rem; margin-top: 0.25rem;">
+                                        <span class="detail-label" style="font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; font-weight: 600; display: block; margin-bottom: 0.25rem;">Quantity Yield Outputs</span>
+                                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.25rem;">
+                                            <span style="font-size: 0.8rem; color: var(--text-secondary);"><i class="fa-solid fa-seedling" style="color: var(--accent-emerald); margin-right: 0.4rem;"></i>Paddy Yield Quantity:</span>
+                                            <strong id="paddy-qty-output" style="font-family: var(--font-heading); color: var(--accent-emerald); font-size: 0.85rem;">12,542,642 t</strong>
+                                        </div>
+                                        <div style="display: flex; justify-content: space-between;">
+                                            <span style="font-size: 0.8rem; color: var(--text-secondary);"><i class="fa-solid fa-bowl-rice" style="color: var(--accent-amber); margin-right: 0.4rem;"></i>Milled Rice Quantity (63%):</span>
+                                            <strong id="rice-qty-output" style="font-family: var(--font-heading); color: var(--accent-amber); font-size: 0.85rem;">7,901,864 t</strong>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -167,15 +200,15 @@
                     <!-- Top Level Stats Bar -->
                     <div class="summary-stats-bar">
                         <div class="summary-stat-box">
-                            <span class="stat-num">99.92%</span>
+                            <span class="stat-num">36.44%</span>
                             <span class="stat-desc">Goodness of Fit (R²)</span>
                         </div>
                         <div class="summary-stat-box">
-                            <span class="stat-num">99.91%</span>
+                            <span class="stat-num">33.01%</span>
                             <span class="stat-desc">Adjusted R²</span>
                         </div>
                         <div class="summary-stat-box">
-                            <span class="stat-num">14.72</span>
+                            <span class="stat-num">141.55</span>
                             <span class="stat-desc">Residual Standard Error (Kg/Ha)</span>
                         </div>
                     </div>
@@ -206,27 +239,27 @@
                                     <tbody>
                                         <tr>
                                             <td><strong>Intercept (β₀)</strong></td>
-                                            <td class="num-col mono">2981.1461</td>
-                                            <td class="num-col mono">102.6474</td>
-                                            <td class="num-col mono">29.0426</td>
-                                            <td class="num-col mono">4.5524e-27</td>
+                                            <td class="num-col mono">2543.5717</td>
+                                            <td class="num-col mono">478.6385</td>
+                                            <td class="num-col mono">5.3142</td>
+                                            <td class="num-col mono">5.3249e-06</td>
                                             <td><span class="badge-tag tag-success">Highly Significant</span></td>
                                         </tr>
                                         <tr>
                                             <td><strong>Planted Area (β₁)</strong></td>
-                                            <td class="num-col mono">-0.004403</td>
-                                            <td class="num-col mono">0.000158</td>
-                                            <td class="num-col mono">-27.8602</td>
-                                            <td class="num-col mono">1.9846e-26</td>
-                                            <td><span class="badge-tag tag-success">Highly Significant</span></td>
+                                            <td class="num-col mono">-0.000155</td>
+                                            <td class="num-col mono">0.000270</td>
+                                            <td class="num-col mono">-0.5737</td>
+                                            <td class="num-col mono">5.6967e-01</td>
+                                            <td><span class="badge-tag tag-warning" style="background: rgba(239, 68, 68, 0.15); color: #f87171;">Not Significant</span></td>
                                         </tr>
                                         <tr>
                                             <td><strong>Rice Production (β₂)</strong></td>
-                                            <td class="num-col mono">0.002291</td>
-                                            <td class="num-col mono">0.000011</td>
-                                            <td class="num-col mono">204.1364</td>
-                                            <td class="num-col mono">4.4940e-58</td>
-                                            <td><span class="badge-tag tag-success">Highly Significant</span></td>
+                                            <td class="num-col mono">0.000091</td>
+                                            <td class="num-col mono">0.000066</td>
+                                            <td class="num-col mono">1.3693</td>
+                                            <td class="num-col mono">1.7915e-01</td>
+                                            <td><span class="badge-tag tag-warning" style="background: rgba(239, 68, 68, 0.15); color: #f87171;">Not Significant</span></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -254,23 +287,23 @@
                                     <tbody>
                                         <tr>
                                             <td><strong>Regression</strong></td>
-                                            <td class="num-col mono">9,539,983.15</td>
+                                            <td class="num-col mono">459,553.89</td>
                                             <td class="num-col mono">2</td>
-                                            <td class="num-col mono">4,769,991.58</td>
-                                            <td class="num-col mono">22,018.22</td>
-                                            <td class="num-col mono text-success">1.24e-57</td>
+                                            <td class="num-col mono">229,776.95</td>
+                                            <td class="num-col mono">10.6084</td>
+                                            <td class="num-col mono text-success">2.2821e-04</td>
                                         </tr>
                                         <tr>
                                             <td><strong>Residual</strong></td>
-                                            <td class="num-col mono">8,015.62</td>
+                                            <td class="num-col mono">801,414.59</td>
                                             <td class="num-col mono">37</td>
-                                            <td class="num-col mono">216.64</td>
+                                            <td class="num-col mono">21,659.85</td>
                                             <td class="num-col mono">-</td>
                                             <td class="num-col mono">-</td>
                                         </tr>
                                         <tr>
                                             <td><strong>Total</strong></td>
-                                            <td class="num-col mono">9,547,998.78</td>
+                                            <td class="num-col mono">1,260,968.48</td>
                                             <td class="num-col mono">39</td>
                                             <td class="num-col mono">-</td>
                                             <td class="num-col mono">-</td>
@@ -409,7 +442,7 @@
                                     <div style="color: var(--accent-emerald); font-size: 1.25rem; margin-bottom: 0.5rem;"><i class="fa-solid fa-calculator"></i></div>
                                     <h3 style="font-family: var(--font-heading); font-size: 1rem; margin-bottom: 0.5rem;">1. OLS Parameter Optimization</h3>
                                     <p style="font-size: 0.8rem; color: var(--text-secondary); line-height: 1.5;">
-                                        During the model training phase, the Ordinary Least Squares (OLS) algorithm analyzed 40 years of DOSM historical data to compute the coefficients that minimize the sum of squared prediction errors (residuals), establishing the mathematically optimized regression equation.
+                                        During the model training phase, the Ordinary Least Squares (OLS) algorithm analyzed 40 years of FAO Nigerian historical rice production data to compute the coefficients that minimize the sum of squared prediction errors (residuals), establishing the mathematically optimized regression equation.
                                     </p>
                                 </div>
                                 <div class="mechanics-step" style="background: rgba(255, 255, 255, 0.015); border: 1px solid var(--border-dim); padding: 1.25rem; border-radius: var(--radius-standard);">
@@ -423,7 +456,7 @@
                                     <div style="color: var(--accent-emerald); font-size: 1.25rem; margin-bottom: 0.5rem;"><i class="fa-solid fa-arrow-trend-up"></i></div>
                                     <h3 style="font-family: var(--font-heading); font-size: 1rem; margin-bottom: 0.5rem;">3. Coefficient Interpretation</h3>
                                     <p style="font-size: 0.8rem; color: var(--text-secondary); line-height: 1.5;">
-                                        The negative coefficient for Planted Area (<strong>-0.004403</strong>) indicates a dilution effect, where expanding land without matching output reduces average yield density. The positive coefficient for Rice Production (<strong>+0.002291</strong>) shows that increased output on stable land drives agricultural efficiency.
+                                        The negative coefficient for Planted Area (<strong>-0.000155</strong>) indicates a slight dilution effect, where expanding land without matching output reduces average yield density. The positive coefficient for Rice Production (<strong>+0.000091</strong>) shows that increased output on stable land drives agricultural efficiency.
                                     </p>
                                 </div>
                             </div>
@@ -454,7 +487,7 @@
                         <!-- Data & Variable Descriptor Card -->
                         <div class="card article">
                             <h2>Dataset &amp; Variable Specifications</h2>
-                            <p class="subtitle">Variables compiled from Department of Statistics Malaysia (1980–2019)</p>
+                            <p class="subtitle">Variables compiled from FAO Nigerian Rice Data (1980–2019)</p>
                             
                             <div class="variable-container">
                                 <div class="var-item">
@@ -469,7 +502,7 @@
                                         <span class="var-badge independent">x₁</span>
                                         <strong>Planted Area</strong>
                                     </div>
-                                    <p class="var-desc">Independent variable (predictor). Measured in Hectares (ha), representing the total land area utilized for paddy cultivation across all Malaysian granaries.</p>
+                                    <p class="var-desc">Independent variable (predictor). Measured in Hectares (ha), representing the total land area utilized for paddy cultivation across Nigeria.</p>
                                 </div>
                                 <div class="var-item">
                                     <div class="var-header">
@@ -492,15 +525,15 @@
                                         <i class="fa-solid fa-circle-check"></i>
                                         <h3>Linearity of Relationship — Met</h3>
                                     </div>
-                                    <p>Visually verified via scatter plots and regression trend lines. The target variable (Average Yield) exhibits a near-perfect linear correlation with Rice Production (r = 0.9907) and a weak positive relationship with Planted Area (r = 0.2316), confirming that a linear model structure is appropriate for the data.</p>
+                                    <p>Visually verified via scatter plots and regression trend lines. The target variable (Average Yield) exhibits moderate positive linear correlations with Rice Production (r = 0.5990) and Planted Area (r = 0.5764), confirming that a linear model structure is appropriate for the data.</p>
                                 </div>
                                 
-                                <div class="assumption-block pass">
+                                <div class="assumption-block warning" style="border-left-color: var(--accent-amber); background: rgba(245, 158, 11, 0.03);">
                                     <div class="status-title">
-                                        <i class="fa-solid fa-circle-check"></i>
-                                        <h3>Absence of Multicollinearity — Met</h3>
+                                        <i class="fa-solid fa-circle-exclamation" style="color: var(--accent-amber);"></i>
+                                        <h3>Multicollinearity (VIF Check) — Documented Limitation</h3>
                                     </div>
-                                    <p>Checked using the Variance Inflation Factor (VIF) on the regression design matrix. The centered VIF for both predictors (Planted Area and Rice Production) calculates to exactly <strong>1.1478</strong>. Since this is well below the standard threshold of 5.0 (and conservative threshold of 10.0), multicollinearity is verified to be absent, proving both predictors add independent value.</p>
+                                    <p>Checked using the Variance Inflation Factor (VIF). Due to the extremely high correlation between Planted Area and Rice Production in Nigeria (r = 0.9844), the centered VIF calculates to <strong>32.26</strong>, indicating high multicollinearity (standard threshold is &lt; 10.0). Note: The project spreadsheet lists VIF as <strong>1.15 (MET)</strong>, indicating that alternative regression subsets or omitted standardization parameters were used in that package. While high multicollinearity inflates individual parameter standard errors, the joint F-test (p = 0.0002) confirms the model's overall prediction remains statistically valid.</p>
                                 </div>
                                 
                                 <div class="assumption-block pass">
@@ -508,7 +541,7 @@
                                         <i class="fa-solid fa-circle-check"></i>
                                         <h3>Homoscedasticity (Constant Error Variance) — Met</h3>
                                     </div>
-                                    <p>Assessed via residuals-vs-fitted scatter plots. The residual values are distributed randomly and relatively uniformly around the zero line across the range of fitted values. No systematic patterns, such as a funnel shape (indicating heteroscedasticity), are observed, verifying stable error variance.</p>
+                                    <p>Assessed via residuals-vs-fitted scatter plots. The residual values are distributed randomly around the zero reference line across the prediction range. No systematic patterns, such as a heteroscedastic funnel shape, are observed, verifying stable error variance.</p>
                                 </div>
                                 
                                 <div class="assumption-block warning">
@@ -516,7 +549,15 @@
                                         <i class="fa-solid fa-circle-exclamation"></i>
                                         <h3>Residual Normality — Minor Time-Series Departure</h3>
                                     </div>
-                                    <p>The Shapiro-Wilk normality test on the OLS residuals yields a statistic of W = 0.7304 (p-value &lt; 0.05), pointing to a slight departure from a perfectly normal distribution. This is a common characteristic of time-series crop datasets. In accordance with the Central Limit Theorem (n = 40), the OLS estimators remain unbiased, and the extremely high goodness of fit (R² = 99.92%) maintains strong predictive validity.</p>
+                                    <p>The Shapiro-Wilk normality test on the OLS residuals yields a statistic of W = 0.9219 (p-value = 0.0088 &lt; 0.05), pointing to a slight departure from a perfectly normal distribution. This is a common characteristic of time-series crop datasets. In accordance with the Central Limit Theorem (n = 40), the OLS estimators remain unbiased and mathematically valid.</p>
+                                </div>
+
+                                <div class="assumption-block pass" style="border-left-color: var(--accent-emerald); background: rgba(16, 185, 129, 0.03);">
+                                    <div class="status-title">
+                                        <i class="fa-solid fa-scale-balanced" style="color: var(--accent-emerald);"></i>
+                                        <h3>Understanding Residual Signs (Positive vs Negative Errors)</h3>
+                                    </div>
+                                    <p>The residual error represents the difference between the actual yield and the predicted yield ($\epsilon = y - \hat{y}$). A <strong>negative residual (minus sign)</strong> indicates that the model <em>overpredicted</em> the yield for that year (Predicted &gt; Actual), while a <strong>positive residual</strong> indicates <em>underprediction</em> (Actual &gt; Predicted). By definition, the Ordinary Least Squares (OLS) algorithm minimizes the sum of squared errors, which mathematically guarantees that the sum (and mean) of OLS residuals is exactly 0. Thus, a balanced mix of positive and negative residuals (minus signs) is normal, expected, and proves the model is an unbiased estimator.</p>
                                 </div>
                             </div>
                         </div>

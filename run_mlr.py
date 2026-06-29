@@ -19,45 +19,40 @@ if sys.platform.startswith('win'):
 
 
 # 1. LOAD DATASET FROM EXCEL
-excel_path = "Malaysia_Paddy_Statistics_1980_2019.xlsx"
+excel_path = "Nigeria_Synthetic_MLR_Analysis.xlsx"
 print(f"Loading dataset from: {excel_path}")
 
 try:
-    df = pd.read_excel(excel_path, header=2)
+    df = pd.read_excel(excel_path, sheet_name='Raw Data', header=None)
 except Exception as e:
     print(f"Error loading Excel: {e}")
     # Fallback to local file in workspace path if needed
-    excel_path = r"c:\Users\hp\OneDrive\Desktop\emmanuel sir j\Malaysia_Paddy_Statistics_1980_2019.xlsx"
-    df = pd.read_excel(excel_path, header=2)
+    excel_path = r"c:\Users\hp\OneDrive\Desktop\emmanuel sir j\Nigeria_Synthetic_MLR_Analysis.xlsx"
+    df = pd.read_excel(excel_path, sheet_name='Raw Data', header=None)
 
-# Clean column headers (remove line breaks, strip spaces)
-df.columns = [col.replace('\n', ' ').strip() for col in df.columns]
+# Extract data starting from row index 2
+data_rows = []
+for i in range(2, len(df)):
+    row = df.iloc[i].tolist()
+    if row[0] == 'Year' or pd.isna(row[0]) or str(row[0]).strip() == "":
+        continue
+    data_rows.append(row)
 
-print("Columns found in Excel:")
-for i, col in enumerate(df.columns):
-    print(f"  [{i}] {col}")
+# Construct df_clean
+years = [int(float(r[0])) for r in data_rows]
+area = [float(r[1]) for r in data_rows]
+paddy = [float(r[2]) for r in data_rows]
+rice = [float(r[3]) for r in data_rows]
+avg_yield = [float(r[4]) for r in data_rows]
 
-# Map variables based on the proposal
-# Dependent (y): Average Yield (Kg/Hectare)
-# Independent (x1): Planted Area (Hectare)
-# Independent (x2): Rice Production (Tonne)
+df_clean = pd.DataFrame({
+    'Year': years,
+    'PlantedArea': area,
+    'PaddyProduction': paddy,
+    'RiceProduction': rice,
+    'AvgYield': avg_yield
+})
 
-# Identify the columns dynamically by looking at their prefixes/keywords
-year_col = [c for c in df.columns if 'Year' in c][0]
-area_col = [c for c in df.columns if 'Planted' in c][0]
-yield_col = [c for c in df.columns if 'Yield' in c][0]
-prod_col = [c for c in df.columns if 'Rice' in c][0]
-
-# Clean the dataset
-df_clean = df[[year_col, area_col, yield_col, prod_col]].copy()
-df_clean.columns = ['Year', 'PlantedArea', 'AvgYield', 'RiceProduction']
-
-# Convert 'Year' and other columns to numeric, strip characters like 'P' or 'e' from years (e.g. 2018 P, 2019 e)
-df_clean['Year'] = df_clean['Year'].astype(str).str.extract(r'(\d{4})').astype(int)
-for col in ['PlantedArea', 'AvgYield', 'RiceProduction']:
-    df_clean[col] = pd.to_numeric(df_clean[col], errors='coerce')
-
-df_clean = df_clean.dropna().reset_index(drop=True)
 n = len(df_clean)
 print(f"\nSuccessfully cleaned and loaded {n} rows of data (Years {df_clean['Year'].min()} - {df_clean['Year'].max()})")
 
@@ -103,7 +98,7 @@ sw_stat, sw_p = stats.shapiro(residuals)
 results_str = f"""=================================================================
              MULTIPLE LINEAR REGRESSION ANALYSIS RESULTS
 =================================================================
-Dataset: Malaysia Paddy Statistics (1980-2019)
+Dataset: Nigeria Synthetic Paddy Statistics (1980-2019)
 Observations (n): {n}
 
 --- MODEL EQUATION ---

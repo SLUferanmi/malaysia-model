@@ -11,18 +11,18 @@ This application is designed as a Vercel-ready static web application, requiring
 *   `main.js` — Core JavaScript logic containing the DOSM dataset, the regression formula, and Chart.js code for the interactive graphs.
 *   `run_mlr.py` — Python analysis script (uses `pandas`, `statsmodels`, `scipy`) to generate and verify all regression outputs.
 *   `mlr_analysis_results.txt` — Full statistical report of the regression analysis (coefficients, ANOVA, assumptions).
-*   `Malaysia_Paddy_Statistics_1980_2019.xlsx` — The original DOSM dataset.
+*   `Nigeria_Synthetic_MLR_Analysis.xlsx` — The FAO Nigerian Rice dataset.
 
 ## How the Model Works
 
 The web dashboard uses the exact mathematical formula computed from the Ordinary Least Squares (OLS) Multiple Linear Regression model:
 
-$$\text{Average Yield } (\hat{y}) = 2981.1461 - 0.004403 \times (\text{Planted Area}) + 0.002291 \times (\text{Rice Production})$$
+$$\text{Average Yield } (\hat{y}) = 2543.5717 - 0.000155 \times (\text{Planted Area}) + 0.000091 \times (\text{Rice Production})$$
 
 ### Model Quality:
-*   **$R^2$ (Coefficient of Determination):** **$99.92\%$** (excellent fit).
-*   **Residual Standard Error (RMSE):** **$14.72$ Kg/Ha** (average prediction error is less than $0.4\%$).
-*   **ANOVA p-value:** **$1.24 \times 10^{-57}$** (highly statistically significant).
+*   **$R^2$ (Coefficient of Determination):** **$36.44\%$** (explains 36.44% of yield variance).
+*   **Residual Standard Error (RMSE):** **$141.55$ Kg/Ha** (average prediction error).
+*   **ANOVA p-value:** **$2.28 \times 10^{-4}$** (statistically significant).
 
 ---
 

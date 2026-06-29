@@ -5,53 +5,53 @@
 
 // 1. EMBEDDED DATASET (DOSM Table 9.1: 1980–2019)
 const dataset = [
-    {"Year":1980,"PlantedArea":716873,"AvgYield":2852,"PaddyProduction":2044604,"RiceProduction":1318332},
-    {"Year":1981,"PlantedArea":710789,"AvgYield":2842,"PaddyProduction":2019900,"RiceProduction":1302921},
-    {"Year":1982,"PlantedArea":682070,"AvgYield":2762,"PaddyProduction":1883604,"RiceProduction":1213281},
-    {"Year":1983,"PlantedArea":665813,"AvgYield":2605,"PaddyProduction":1734325,"RiceProduction":1116937},
-    {"Year":1984,"PlantedArea":630833,"AvgYield":2491,"PaddyProduction":1571674,"RiceProduction":1010279},
-    {"Year":1985,"PlantedArea":656375,"AvgYield":2975,"PaddyProduction":1952914,"RiceProduction":1257970},
-    {"Year":1986,"PlantedArea":650875,"AvgYield":2640,"PaddyProduction":1718215,"RiceProduction":1104501},
-    {"Year":1987,"PlantedArea":658954,"AvgYield":2469,"PaddyProduction":1626699,"RiceProduction":1046467},
-    {"Year":1988,"PlantedArea":671755,"AvgYield":2525,"PaddyProduction":1696239,"RiceProduction":1091478},
-    {"Year":1989,"PlantedArea":664137,"AvgYield":2625,"PaddyProduction":1743444,"RiceProduction":1122617},
-    {"Year":1990,"PlantedArea":680647,"AvgYield":2769,"PaddyProduction":1884984,"RiceProduction":1215065},
-    {"Year":1991,"PlantedArea":683640,"AvgYield":2818,"PaddyProduction":1926354,"RiceProduction":1241796},
-    {"Year":1992,"PlantedArea":672753,"AvgYield":2992,"PaddyProduction":2012732,"RiceProduction":1297914},
-    {"Year":1993,"PlantedArea":693434,"AvgYield":3035,"PaddyProduction":2104447,"RiceProduction":1357432},
-    {"Year":1994,"PlantedArea":698624,"AvgYield":3061,"PaddyProduction":2138788,"RiceProduction":1378945},
-    {"Year":1995,"PlantedArea":672787,"AvgYield":3162,"PaddyProduction":2127271,"RiceProduction":1372584},
-    {"Year":1996,"PlantedArea":685468,"AvgYield":3251,"PaddyProduction":2228489,"RiceProduction":1438794},
-    {"Year":1997,"PlantedArea":690975,"AvgYield":3068,"PaddyProduction":2119615,"RiceProduction":1367951},
-    {"Year":1998,"PlantedArea":674404,"AvgYield":2883,"PaddyProduction":1944240,"RiceProduction":1256854},
-    {"Year":1999,"PlantedArea":692389,"AvgYield":2941,"PaddyProduction":2036641,"RiceProduction":1314437},
-    {"Year":2000,"PlantedArea":698702,"AvgYield":3064,"PaddyProduction":2140904,"RiceProduction":1381662},
-    {"Year":2001,"PlantedArea":673634,"AvgYield":3110,"PaddyProduction":2094995,"RiceProduction":1351461},
-    {"Year":2002,"PlantedArea":678544,"AvgYield":3238,"PaddyProduction":2197351,"RiceProduction":1415117},
-    {"Year":2003,"PlantedArea":671820,"AvgYield":3360,"PaddyProduction":2257037,"RiceProduction":1453137},
-    {"Year":2004,"PlantedArea":676310,"AvgYield":3434,"PaddyProduction":2291353,"RiceProduction":1467052},
-    {"Year":2005,"PlantedArea":666781,"AvgYield":3471,"PaddyProduction":2314378,"RiceProduction":1490015},
-    {"Year":2006,"PlantedArea":676034,"AvgYield":3236,"PaddyProduction":2187519,"RiceProduction":1407220},
-    {"Year":2007,"PlantedArea":676111,"AvgYield":3514,"PaddyProduction":2375604,"RiceProduction":1530971},
-    {"Year":2008,"PlantedArea":656602,"AvgYield":3584,"PaddyProduction":2353032,"RiceProduction":1516470},
-    {"Year":2009,"PlantedArea":674928,"AvgYield":3720,"PaddyProduction":2511043,"RiceProduction":1620259},
-    {"Year":2010,"PlantedArea":677884,"AvgYield":3636,"PaddyProduction":2464831,"RiceProduction":1588457},
-    {"Year":2011,"PlantedArea":687940,"AvgYield":3748,"PaddyProduction":2578519,"RiceProduction":1661260},
-    {"Year":2012,"PlantedArea":684545,"AvgYield":3797,"PaddyProduction":2599382,"RiceProduction":1674981},
-    {"Year":2013,"PlantedArea":671679,"AvgYield":3876,"PaddyProduction":2603654,"RiceProduction":1677368},
-    {"Year":2014,"PlantedArea":679239,"AvgYield":4194,"PaddyProduction":2848560,"RiceProduction":1834831},
-    {"Year":2015,"PlantedArea":681559,"AvgYield":4022,"PaddyProduction":2741404,"RiceProduction":1767407},
-    {"Year":2016,"PlantedArea":688770,"AvgYield":3978,"PaddyProduction":2739606,"RiceProduction":1766115},
-    {"Year":2017,"PlantedArea":685548,"AvgYield":3750,"PaddyProduction":2570513,"RiceProduction":1656302},
-    {"Year":2018,"PlantedArea":700306,"AvgYield":3770,"PaddyProduction":2639916,"RiceProduction":1700231},
-    {"Year":2019,"PlantedArea":684416,"AvgYield":4255,"PaddyProduction":2912203,"RiceProduction":1876922}
+    {"Year":1980,"PlantedArea":2139737,"AvgYield":1903.6,"PaddyProduction":2556777,"RiceProduction":1610769},
+    {"Year":1981,"PlantedArea":2132528,"AvgYield":2001.26,"PaddyProduction":2694444,"RiceProduction":1697500},
+    {"Year":1982,"PlantedArea":2238994,"AvgYield":2142.74,"PaddyProduction":2898797,"RiceProduction":1826242},
+    {"Year":1983,"PlantedArea":2352611,"AvgYield":2171.64,"PaddyProduction":3127331,"RiceProduction":1970219},
+    {"Year":1984,"PlantedArea":2255626,"AvgYield":2167.58,"PaddyProduction":3119684,"RiceProduction":1965401},
+    {"Year":1985,"PlantedArea":2299217,"AvgYield":2417.37,"PaddyProduction":3573012,"RiceProduction":2250997},
+    {"Year":1986,"PlantedArea":2487875,"AvgYield":2600.0,"PaddyProduction":3907418,"RiceProduction":2461673},
+    {"Year":1987,"PlantedArea":2466522,"AvgYield":2600.0,"PaddyProduction":4541480,"RiceProduction":2861132},
+    {"Year":1988,"PlantedArea":2411159,"AvgYield":2600.0,"PaddyProduction":4644288,"RiceProduction":2925901},
+    {"Year":1989,"PlantedArea":2535712,"AvgYield":2600.0,"PaddyProduction":4415393,"RiceProduction":2781697},
+    {"Year":1990,"PlantedArea":2498824,"AvgYield":2600.0,"PaddyProduction":5185017,"RiceProduction":3266561},
+    {"Year":1991,"PlantedArea":2542228,"AvgYield":2600.0,"PaddyProduction":5288859,"RiceProduction":3331981},
+    {"Year":1992,"PlantedArea":2642433,"AvgYield":2600.0,"PaddyProduction":5492063,"RiceProduction":3460000},
+    {"Year":1993,"PlantedArea":2513604,"AvgYield":2600.0,"PaddyProduction":6071563,"RiceProduction":3825084},
+    {"Year":1994,"PlantedArea":2572262,"AvgYield":2600.0,"PaddyProduction":6444092,"RiceProduction":4059778},
+    {"Year":1995,"PlantedArea":2708863,"AvgYield":2600.0,"PaddyProduction":6693039,"RiceProduction":4216615},
+    {"Year":1996,"PlantedArea":2716409,"AvgYield":2600.0,"PaddyProduction":6544183,"RiceProduction":4122835},
+    {"Year":1997,"PlantedArea":2866165,"AvgYield":2600.0,"PaddyProduction":6943065,"RiceProduction":4374130},
+    {"Year":1998,"PlantedArea":2811973,"AvgYield":2600.0,"PaddyProduction":7368249,"RiceProduction":4641997},
+    {"Year":1999,"PlantedArea":2815220,"AvgYield":2600.0,"PaddyProduction":7794340,"RiceProduction":4910434},
+    {"Year":2000,"PlantedArea":3089046,"AvgYield":2600.0,"PaddyProduction":7720668,"RiceProduction":4864021},
+    {"Year":2001,"PlantedArea":2997322,"AvgYield":2600.0,"PaddyProduction":8063243,"RiceProduction":5079843},
+    {"Year":2002,"PlantedArea":3064376,"AvgYield":2600.0,"PaddyProduction":8116725,"RiceProduction":5113536},
+    {"Year":2003,"PlantedArea":2988584,"AvgYield":2600.0,"PaddyProduction":8368017,"RiceProduction":5271851},
+    {"Year":2004,"PlantedArea":3102603,"AvgYield":2600.0,"PaddyProduction":9118977,"RiceProduction":5744955},
+    {"Year":2005,"PlantedArea":3198617,"AvgYield":2600.0,"PaddyProduction":9521123,"RiceProduction":5998307},
+    {"Year":2006,"PlantedArea":3141253,"AvgYield":2600.0,"PaddyProduction":9453754,"RiceProduction":5955865},
+    {"Year":2007,"PlantedArea":3306978,"AvgYield":2600.0,"PaddyProduction":9982526,"RiceProduction":6288991},
+    {"Year":2008,"PlantedArea":3272461,"AvgYield":2600.0,"PaddyProduction":10102383,"RiceProduction":6364501},
+    {"Year":2009,"PlantedArea":3340767,"AvgYield":2600.0,"PaddyProduction":10135370,"RiceProduction":6385283},
+    {"Year":2010,"PlantedArea":3359555,"AvgYield":2600.0,"PaddyProduction":10647707,"RiceProduction":6708055},
+    {"Year":2011,"PlantedArea":3599464,"AvgYield":2600.0,"PaddyProduction":11200550,"RiceProduction":7056346},
+    {"Year":2012,"PlantedArea":3493792,"AvgYield":2600.0,"PaddyProduction":11098511,"RiceProduction":6992061},
+    {"Year":2013,"PlantedArea":3453844,"AvgYield":2600.0,"PaddyProduction":11752265,"RiceProduction":7403927},
+    {"Year":2014,"PlantedArea":3647854,"AvgYield":2600.0,"PaddyProduction":11028672,"RiceProduction":6948063},
+    {"Year":2015,"PlantedArea":3527973,"AvgYield":2600.0,"PaddyProduction":12120802,"RiceProduction":7636105},
+    {"Year":2016,"PlantedArea":3685939,"AvgYield":2600.0,"PaddyProduction":12218527,"RiceProduction":7697672},
+    {"Year":2017,"PlantedArea":3556046,"AvgYield":2600.0,"PaddyProduction":12399300,"RiceProduction":7811559},
+    {"Year":2018,"PlantedArea":3650155,"AvgYield":2600.0,"PaddyProduction":12765030,"RiceProduction":8041969},
+    {"Year":2019,"PlantedArea":3815748,"AvgYield":2600.0,"PaddyProduction":12542642,"RiceProduction":7901864}
 ];
 
 // 2. MODEL PARAMETERS
 const MODEL = {
-    intercept: 2981.146056,
-    betaPlantedArea: -0.004403,
-    betaRiceProduction: 0.002291,
+    intercept: 2543.571670,
+    betaPlantedArea: -0.000154807,
+    betaRiceProduction: 0.000090908,
 };
 
 // 3. CORE PREDICTION FUNCTION
@@ -123,22 +123,49 @@ function formatNumber(num) {
     return new Intl.NumberFormat().format(Math.round(num));
 }
 
+function deselectYear() {
+    const yearSelect = document.getElementById('year-select');
+    if (yearSelect) {
+        yearSelect.value = "";
+    }
+}
+
 function updatePrediction() {
     const area = parseFloat(plantedAreaInput.value) || 0;
     const prod = parseFloat(riceProductionInput.value) || 0;
     
-    // Execute OLS Prediction
+    // Measure prediction latency (Prediction Time)
+    const t0 = performance.now();
     const prediction = predictYield(area, prod);
+    const t1 = performance.now();
+    const latency = (t1 - t0).toFixed(4);
     
     // Render text output
     predictionOutput.textContent = formatNumber(prediction);
     
-    // Render description text
-    predictionInterpretation.innerHTML = `Crop yield is estimated at <strong>${formatNumber(prediction)} kg/ha</strong> based on a planted area of <strong>${formatNumber(area)} ha</strong> and rice production of <strong>${formatNumber(prod)} tonnes</strong>.`;
+    // Paddy Quantity Yield (Tonnes)
+    const paddyQty = (prediction * area) / 1000;
+    document.getElementById('paddy-qty-output').textContent = formatNumber(paddyQty) + " t";
     
-    // Update yield progress bar (Map yield range [2000, 4600] to scale [0%, 100%])
-    const minYield = 2000;
-    const maxYield = 4600;
+    // Milled Rice Quantity Yield (63.0% recovery)
+    const riceQty = paddyQty * 0.63;
+    document.getElementById('rice-qty-output').textContent = formatNumber(riceQty) + " t";
+    
+    // Prediction Latency
+    const latencyText = parseFloat(latency) < 0.01 ? "< 0.01 ms" : `${latency} ms`;
+    document.getElementById('prediction-time').textContent = latencyText;
+    
+    // Yield Time (Year)
+    const yearSelect = document.getElementById('year-select');
+    const selectedYrVal = yearSelect ? yearSelect.value : "";
+    document.getElementById('yield-time-label').textContent = selectedYrVal ? `Year ${selectedYrVal}` : "Custom Scenario";
+    
+    // Render description text
+    predictionInterpretation.innerHTML = `Average crop yield is estimated at <strong>${formatNumber(prediction)} kg/ha</strong>. This generates a total paddy output volume of <strong>${formatNumber(paddyQty)} tonnes</strong> and milled rice quantity of <strong>${formatNumber(riceQty)} tonnes</strong>.`;
+    
+    // Update yield progress bar (Map yield range [1800, 2800] to scale [0%, 100%])
+    const minYield = 1800;
+    const maxYield = 2800;
     let pct = ((prediction - minYield) / (maxYield - minYield)) * 100;
     pct = Math.max(0, Math.min(100, pct)); // clamp
     predictionProgressFill.style.width = `${pct}%`;
@@ -146,6 +173,7 @@ function updatePrediction() {
 
 function syncInputs(numInput, rangeSlider) {
     numInput.addEventListener('input', () => {
+        deselectYear();
         let val = parseFloat(numInput.value);
         const min = parseFloat(numInput.min);
         const max = parseFloat(numInput.max);
@@ -156,6 +184,7 @@ function syncInputs(numInput, rangeSlider) {
         updatePrediction();
     });
     rangeSlider.addEventListener('input', () => {
+        deselectYear();
         numInput.value = rangeSlider.value;
         updatePrediction();
     });
@@ -164,8 +193,37 @@ function syncInputs(numInput, rangeSlider) {
 syncInputs(plantedAreaInput, plantedAreaRange);
 syncInputs(riceProductionInput, riceProductionRange);
 
-// Trigger initial estimation
-updatePrediction();
+// Populate Year Select dropdown dynamically
+document.addEventListener('DOMContentLoaded', () => {
+    const yearSelect = document.getElementById('year-select');
+    if (yearSelect) {
+        yearSelect.innerHTML = '<option value="">-- Custom Input --</option>';
+        dataset.forEach(row => {
+            const opt = document.createElement('option');
+            opt.value = row.Year;
+            opt.textContent = `Year ${row.Year}`;
+            if (row.Year === 2019) opt.selected = true; // Set 2019 as default
+            yearSelect.appendChild(opt);
+        });
+        
+        yearSelect.addEventListener('change', () => {
+            const yr = parseInt(yearSelect.value);
+            if (yr) {
+                const rec = dataset.find(r => r.Year === yr);
+                if (rec) {
+                    plantedAreaInput.value = rec.PlantedArea;
+                    plantedAreaRange.value = rec.PlantedArea;
+                    riceProductionInput.value = rec.RiceProduction;
+                    riceProductionRange.value = rec.RiceProduction;
+                    updatePrediction();
+                }
+            }
+        });
+    }
+    
+    // Trigger initial prediction for 2019 default
+    updatePrediction();
+});
 
 
 // 6. CHARTS INITIALIZATION
@@ -385,8 +443,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 {
                     label: 'Null Residual Line',
                     data: [
-                        { x: 2300, y: 0 },
-                        { x: 4400, y: 0 }
+                        { x: 2200, y: 0 },
+                        { x: 2600, y: 0 }
                     ],
                     type: 'line',
                     borderColor: '#ef4444',

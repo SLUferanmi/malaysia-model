@@ -1,11 +1,11 @@
 =================================================================
              MULTIPLE LINEAR REGRESSION ANALYSIS RESULTS
 =================================================================
-Dataset: Malaysia Paddy Statistics (1980-2019)
+Dataset: Nigeria Synthetic Paddy Statistics (1980-2019)
 Observations (n): 40
 
 --- MODEL EQUATION ---
-ŷ = 2981.1461 + (-0.004403) x₁ + (0.002291) x₂
+ŷ = 2543.5717 + (-0.000155) x₁ + (0.000091) x₂
 
 Where:
   ŷ  = Average Yield (Kg/Hectare)
@@ -13,41 +13,41 @@ Where:
   x₂ = Rice Production (Tonne)
 
 --- MODEL SUMMARY & FIT ---
-R² (R-squared)        : 0.999160 (99.92%)
-Adjusted R²          : 0.999115 (99.91%)
-Residual Std Error   : 14.7186 Kg/Ha (RMSE)
-F-statistic          : 22018.2158
-Prob (F-statistic)   : 1.2430e-57 (Model is statistically significant)
+R² (R-squared)        : 0.364445 (36.44%)
+Adjusted R²          : 0.330091 (33.01%)
+Residual Std Error   : 147.1729 Kg/Ha (RMSE)
+F-statistic          : 10.6084
+Prob (F-statistic)   : 2.2821e-04 (Model is statistically significant)
 
 --- COEFFICIENTS ---
 Variable          Estimate (β)     Std Error       t-value         p-value
 -----------------------------------------------------------------
-Intercept (β₀)        2981.1461      102.6474       29.0426    4.5524e-27
-Planted Area (β₁)     -0.004403      0.000158      -27.8602    1.9846e-26
-Rice Production (β₂)    0.002291     0.000011      204.1364    4.4940e-58
+Intercept (β₀)        2543.5717      478.6385        5.3142    5.3249e-06
+Planted Area (β₁)     -0.000155      0.000270       -0.5737    5.6967e-01
+Rice Production (β₂)    0.000091     0.000066        1.3693    1.7915e-01
 
 --- ANOVA TABLE ---
 Source          SS               df     MS               F            p-value
 -----------------------------------------------------------------
-Regression           9539983.15     2       4769991.58  22018.2158  1.2430e-57
-Residual                8015.62    37           216.64
-Total                9547998.78    39
+Regression            459553.89     2        229776.95     10.6084  2.2821e-04
+Residual              801414.59    37         21659.85
+Total                1260968.48    39
 
 --- CORRELATION MATRIX ---
                   Planted Area    Rice Production   Average Yield
-Planted Area        1.000000        0.358832        0.231636
-Rice Production     0.358832        1.000000        0.990732
-Average Yield       0.231636        0.990732        1.000000
+Planted Area        1.000000        0.984380        0.576400
+Rice Production     0.984380        1.000000        0.598993
+Average Yield       0.576400        0.598993        1.000000
 
 --- ASSUMPTION CHECKS ---
 1. Linearity: Checked via scatter plots.
 2. Multicollinearity (VIF):
-   - VIF (Planted Area): 1.1478
-   - VIF (Rice Production): 1.1478
-   ✔ No severe multicollinearity (VIF < 10)
+   - VIF (Planted Area): 32.2613
+   - VIF (Rice Production): 32.2613
+   ⚠ High multicollinearity detected (VIF > 10). Note as study limitation.
 3. Normality of Residuals:
-   - Shapiro-Wilk stat: 0.7304
-   - Shapiro-Wilk p-value: 0.0000
+   - Shapiro-Wilk stat: 0.9219
+   - Shapiro-Wilk p-value: 0.0088
    ⚠ Residuals depart slightly from normality (p <= 0.05)
 4. Homoscedasticity: Checked via residual plots.
 =================================================================
